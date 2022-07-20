@@ -2,6 +2,7 @@ import pygame
 
 from pygame.locals import *
 
+
 size = height, width =(800, 800)
 road_w = int(width/1.6)
 roadmark_w = int(width/80)
@@ -11,32 +12,7 @@ pygame.init()
 running = True
 screen = pygame.display.set_mode(size)
 screen.fill((60, 220, 0))
-pygame.draw.rect(
-    screen,
-    (50,50,50),
-    (width/2-road_w/2, 0, road_w, height)
-    )
 
-# center yellow line
-pygame.draw.rect(
-    screen,
-    (255, 240, 60),
-    (width/2 - roadmark_w/2, 0, roadmark_w, height)
-)
-
-# left white line
-pygame.draw.rect(
-    screen,
-    (255, 255, 255),
-    (width/2 - road_w/2 + roadmark_w * 2, 0, roadmark_w, height)
-)
-
-#right white line
-pygame.draw.rect(
-    screen,
-    (255, 255, 255),
-    (width/2 + road_w/2 - roadmark_w * 3, 0, roadmark_w, height)
-)
 pygame.display.update()
 
 # user vehicle
@@ -51,6 +27,12 @@ car_loc2.center = width/2 - road_w/4, height* 0.2
 
 
 while running:
+    # Animate enemy car
+    car_loc2[1] += 1
+    if (car_loc2[1] > height):
+        car_loc2[1] = 0
+
+
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
@@ -60,6 +42,34 @@ while running:
                 car_loc = car_loc.move([-int(road_w/2), 0])
             if event.key in [K_d, K_RIGHT]:
                 car_loc = car_loc.move(int(road_w/2), 0)
+        # TODO: add restriction to car movements
+
+    pygame.draw.rect(
+    screen,
+    (50,50,50),
+    (width/2-road_w/2, 0, road_w, height)
+    )
+
+    # center yellow line
+    pygame.draw.rect(
+        screen,
+        (255, 240, 60),
+        (width/2 - roadmark_w/2, 0, roadmark_w, height)
+    )
+
+    # left white line
+    pygame.draw.rect(
+        screen,
+        (255, 255, 255),
+        (width/2 - road_w/2 + roadmark_w * 2, 0, roadmark_w, height)
+    )
+
+    #right white line
+    pygame.draw.rect(
+        screen,
+        (255, 255, 255),
+        (width/2 + road_w/2 - roadmark_w * 3, 0, roadmark_w, height)
+    )
 
     screen.blit(car, car_loc)
     screen.blit(car2, car_loc2)
