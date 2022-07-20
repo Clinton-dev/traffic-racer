@@ -39,9 +39,23 @@ pygame.draw.rect(
 )
 pygame.display.update()
 
+car = pygame.image.load('car.png')
+car_loc = car.get_rect()
+car_loc.center = width/2 + road_w/4, height* 0.7
+
+# enemy vehicle
+car2 = pygame.image.load('otherCar.png')
+car_loc2 = car.get_rect()
+car_loc2.center = width/2 - road_w/4, height* 0.2
+
+
 while running:
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
+
+    screen.blit(car, car_loc)
+    screen.blit(car2, car_loc2)
+    pygame.display.update()
 
 pygame.quit()
