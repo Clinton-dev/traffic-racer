@@ -39,6 +39,7 @@ pygame.draw.rect(
 )
 pygame.display.update()
 
+# user vehicle
 car = pygame.image.load('car.png')
 car_loc = car.get_rect()
 car_loc.center = width/2 + road_w/4, height* 0.7
@@ -53,6 +54,12 @@ while running:
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
+
+        if event.type == KEYDOWN:
+            if event.key in [K_a, K_LEFT]:
+                car_loc = car_loc.move([-int(road_w/2), 0])
+            if event.key in [K_d, K_RIGHT]:
+                car_loc = car_loc.move(int(road_w/2), 0)
 
     screen.blit(car, car_loc)
     screen.blit(car2, car_loc2)
