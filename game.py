@@ -29,8 +29,16 @@ car2 = pygame.image.load('otherCar.png')
 car_loc2 = car.get_rect()
 car_loc2.center = left_lane, height* 0.2
 
+counter = 0
+
 
 while running:
+    counter +=1
+    if counter == 1024:
+        speed += 0.25
+        counter = 0
+        print('Level up!!', speed)
+
     # Animate enemy car
     car_loc2[1] += speed
     if car_loc2[1] > height:
@@ -39,6 +47,12 @@ while running:
             car_loc2.center = right_lane, -200
         else:
             car_loc2.center = left_lane, -200
+
+    # player looses if the cars collide
+    if car_loc[0] == car_loc2[0] and car_loc2[1] > car_loc[1] - 250:
+        print('YOU LOST!! Try the game next time')
+        break
+
 
 
     for event in pygame.event.get():
