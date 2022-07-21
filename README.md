@@ -2,6 +2,9 @@
 ## Description
 A traffic racing game built using pygame.
 
+### Screenshot
+![](./screenshot.png)
+
 ### Prerequisites
 
 The game requires Python and you can install python for your specific operating system by following this documentation [Python download](https://www.python.org/downloads/) and also pygame using the following command `python3 -m pip install -U pygame --user` or you can follow this [pygame docs](https://www.pygame.org/wiki/GettingStarted#Pygame%20Installation)
