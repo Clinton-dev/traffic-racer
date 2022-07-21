@@ -3,6 +3,10 @@ import random
 
 from pygame.locals import *
 
+# TODOS: add scoring system
+# Restrict users car to stay in side the road
+# Allow users car to move back and forward
+
 size = height, width =(800, 800)
 road_w = int(width/1.6)
 roadmark_w = int(width/80)
